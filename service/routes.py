@@ -28,7 +28,9 @@ def index():
         status=status.HTTP_200_OK,
         message="Hit Counter Service",
         version="1.0.0",
-        url=url_for("list_counters", _external=True),
+        url=url_for(
+            "list_counters", _external=True
+        ),  # Break the arguments to url_for
     )
 
 
@@ -55,7 +57,8 @@ def create_counters(name):
 
     if name in COUNTER:
         return abort(
-            status.HTTP_409_CONFLICT, f"Counter {name} already exists"
+            status.HTTP_409_CONFLICT,
+            f"Counter {name} already exists"
         )
 
     COUNTER[name] = 0
